@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+  openfoodfacts:
+    build:
+      context: ./openfoodfacts
+    container_name: openfoodfacts
+    ports:
+      - "5000:5000"
+    networks:
+      - monitoring
+
   prometheus:
     image: prom/prometheus:v2.37.0
     container_name: prometheus
