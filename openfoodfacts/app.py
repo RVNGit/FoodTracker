@@ -1,18 +1,10 @@
 from flask import Flask, request, jsonify
 import requests
-from prometheus_client import Counter, Histogram, generate_latest
 
 app = Flask(__name__)
 
-# Metrici Prometheus
-REQUEST_COUNT = Counter('api_requests_total', 'Total number of API requests', ['endpoint'])
-REQUEST_DURATION = Histogram('api_request_duration_seconds', 'Duration of API requests in seconds', ['endpoint'])
-
 @app.route("/api/product", methods=["GET"])
 def get_product():
-    with REQUEST_DURATION.labels(endpoint="/api/product").time():
-        REQUEST_COUNT.labels(endpoint="/api/product").inc()
-
         barcode = request.args.get("barcode")
         if not barcode:
             return jsonify({"error": "Barcode is required"}), 400
@@ -48,10 +40,6 @@ def get_product():
         }
 
         return jsonify(result)
-
-@app.route("/metrics")
-def metrics():
-    return generate_latest(), 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
