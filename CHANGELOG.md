@@ -1,0 +1,14 @@
+# Changelog
+
+This file contains all notable changes made to the FoodTracker project for the IDP subject.
+
+## [1.1] - 2025-04-26
+### Added
+- Github Actions workflow for CI/CD that automates building and deploying the project. (Contributed by Miruna)
+- This changelog file (Contributed by Miruna)
+
+## [1.0] - 2025-04-24
+### Added
+- Microservice for interaction with the Open Food Facts API (Contributed by Miruna)
+- Monitorization with prometheus and visualization with grafana (Contributed by Miruna)
+
