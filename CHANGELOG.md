@@ -2,6 +2,12 @@
 
 This file contains all notable changes made to the FoodTracker project for the IDP subject.
 
+## [1.1] - 2025-04-27
+### Added
+- Microservice for interaction with the user database. (Contributed by Rareș)
+- App minimal frontend (Contributed by Rareș)
+- This changelog file (Contributed by Rareș)
+
 ## [1.1] - 2025-04-26
 ### Added
 - Github Actions workflow for CI/CD that automates building and deploying the project. (Contributed by Miruna)
