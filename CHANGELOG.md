@@ -2,7 +2,14 @@
 
 This file contains all notable changes made to the FoodTracker project for the IDP subject.
 
-## [1.1] - 2025-04-27
+## [1.3] - 2025-05-14
+### Modified
+- Openfoodfacts microservice has now become crud microservice for retrieving informationfro Open Food Facts
+  and interacting with the database (Contributed by Miruna)
+### Added
+- mongoDB and Mongo-Express for the product database (Contributed by Miruna)
+
+## [1.2] - 2025-04-27
 ### Added
 - Microservice for interaction with the user database. (Contributed by Rareș)
 - App minimal frontend (Contributed by Rareș)
