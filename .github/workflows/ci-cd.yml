@@ -6,6 +6,7 @@ on:
       - main
       - miruna
       - rares
+      - miruna_etapa_finala
   pull_request:
     branches:
       - main
