@@ -8,7 +8,27 @@ services:
     ports:
       - "5000:5000"
     networks:
-      - monitoring
+      - backend
+      - database
+
+  openfoodfacts:
+    build:
+      context: ./openfoodfacts
+    container_name: openfoodfacts
+    ports:
+      - "5010:5000"
+    networks:
+      - backend
+
+
+  business_logic:
+    build:
+      context: ./business_logic
+    container_name: business_logic
+    ports:
+      - "5005:5000"
+    networks:
+      - backend
 
   prometheus:
     image: prom/prometheus:v2.37.0
@@ -19,6 +39,8 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       - monitoring
+      - backend
+      - database
 
   grafana:
     image: grafana/grafana:9.0.0
@@ -77,7 +99,7 @@ services:
     volumes:
       - mongo-data:/data/db  # Persist MongoDB data
     networks:
-      - monitoring
+      - database
 
   mongo-express:
     image: mongo-express
@@ -90,7 +112,7 @@ services:
       ME_CONFIG_MONGODB_PORT: 27017
       ME_CONFIG_MONGODB_ENABLE_ADMIN: 'true'
     networks:
-      - monitoring
+      - database
 
 volumes:
   grafana-data:
@@ -100,3 +122,5 @@ volumes:
 
 networks:
   monitoring:
+  backend:
+  database:

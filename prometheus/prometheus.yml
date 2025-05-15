@@ -9,3 +9,11 @@ scrape_configs:
   - job_name: 'crud'
     static_configs:
       - targets: ['crud:5000']
+
+  - job_name: 'openfoodfacts'
+    static_configs:
+      - targets: ['openfoodfacts:5000']
+
+  - job_name: 'business_logic'
+    static_configs:
+      - targets: ['business_logic:5000']
