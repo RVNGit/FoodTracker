@@ -4,13 +4,14 @@ This file contains all notable changes made to the FoodTracker project for the I
 
 ## [1.3] - 2025-05-15
 ### Added
-- backend for the business logic microservice (Contributed by Miruna)
+- Backend for the business logic microservice (Contributed by Miruna)
+- Grafana dashboard (contributed by Miruna)
+- Portainer integration (Contributed by Miruna)
 
 ## [1.3] - 2025-05-14
 ### Added
-- crud microservice for interacting with the database (Contributed by Miruna)
-### Added
-- mongoDB and Mongo-Express for the product database (Contributed by Miruna)
+- CRUD microservice for interacting with the database (Contributed by Miruna)
+- MongoDB and Mongo-Express for the product database (Contributed by Miruna)
 
 ## [1.2] - 2025-04-27
 ### Added
