@@ -121,11 +121,21 @@ services:
     networks:
       - database
 
+  portainer:
+    image: docker.io/portainer/portainer-ce
+    container_name: portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    restart: always
+
 volumes:
   grafana-data:
   mysql-data:
   mongo-data:
-
+  portainer_data:
 
 networks:
   monitoring:
