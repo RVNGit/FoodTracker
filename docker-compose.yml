@@ -41,6 +41,7 @@ services:
       - monitoring
       - backend
       - database
+      - auth
 
   grafana:
     image: grafana/grafana:9.0.0
@@ -52,6 +53,8 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
       - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
     networks:
       - monitoring
 
@@ -68,6 +71,8 @@ services:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - auth
 
   keycloak:
     image: quay.io/keycloak/keycloak:22.0
@@ -89,6 +94,8 @@ services:
     depends_on:
       - mysql
     command: start-dev
+    networks:
+      - auth
 
   mongodb:
     image: mongo:8.0
@@ -124,3 +131,4 @@ networks:
   monitoring:
   backend:
   database:
+  auth:
