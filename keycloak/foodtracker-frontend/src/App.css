@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.barcode-input::placeholder {
+  color: #ccc;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
