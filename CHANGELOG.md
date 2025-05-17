@@ -2,6 +2,12 @@
 
 This file contains all notable changes made to the FoodTracker project for the IDP subject.
 
+## [1.4] - 2025-05-18
+### Added
+- Made changes to the CRUD microservice files for routing compatibility with keycloak (Contributed by Rareș)
+- App extended frontend and backend (Sorting, Adding, Deleting Products, Searching Products by Name) (Contributed by Rareș)
+- Made changes to the Open Food Facts API microservice files for information fetching capabilities (Contributed by Rareș)
+
 ## [1.3] - 2025-05-15
 ### Added
 - Backend for the business logic microservice (Contributed by Miruna)
