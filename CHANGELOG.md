@@ -2,6 +2,10 @@
 
 This file contains all notable changes made to the FoodTracker project for the IDP subject.
 
+## [1.5] - 2025-05-18
+### Added
+- Implemented Docker-Swarm compatibility (Contributed by Rareș)
+
 ## [1.4] - 2025-05-18
 ### Added
 - Made changes to the CRUD microservice files for routing compatibility with keycloak (Contributed by Rareș)
