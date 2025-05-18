@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify, Response
 from prometheus_client import generate_latest, CONTENT_TYPE_LATEST
+from flask_cors import CORS
 import requests
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/api/product", methods=["GET"])
 def get_product():

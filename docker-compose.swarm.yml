@@ -2,33 +2,43 @@ version: '3.8'
 
 services:
   crud:
-    build:
-      context: ./crud
+    image: foodtracker-crud:latest
     container_name: crud
     ports:
       - "5000:5000"
     networks:
       - backend
       - database
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
 
   openfoodfacts:
-    build:
-      context: ./openfoodfacts
+    image: foodtracker-openfoodfacts:latest
     container_name: openfoodfacts
     ports:
       - "5010:5000"
     networks:
       - backend
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
 
   business_logic:
-    build:
-      context: ./business_logic
+    image: foodtracker-business_logic:latest
     container_name: business_logic
     ports:
       - "5005:5000"
     networks:
       - backend
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   prometheus:
     image: prom/prometheus:v2.37.0
@@ -42,6 +52,8 @@ services:
       - backend
       - database
       - auth
+    deploy:
+      replicas: 1
 
   grafana:
     image: grafana/grafana:9.0.0
@@ -57,11 +69,13 @@ services:
       - ./grafana/dashboards:/var/lib/grafana/dashboards
     networks:
       - monitoring
+    deploy:
+      replicas: 1
 
   mysql:
     image: mysql:8
     container_name: mysql
-    restart: always
+    # restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: keycloak
@@ -73,11 +87,13 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - auth
+    deploy:
+      replicas: 1
 
   keycloak:
     image: quay.io/keycloak/keycloak:22.0
     container_name: keycloak
-    restart: always
+    # restart: always
     environment:
       KC_DB: mysql
       KC_DB_URL_HOST: mysql
@@ -96,22 +112,26 @@ services:
     command: start-dev
     networks:
       - auth
+    deploy:
+      replicas: 1
 
   mongodb:
     image: mongo:8.0
     container_name: mongodb
-    restart: always
+    # restart: always
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db  # Persist MongoDB data
     networks:
       - database
+    deploy:
+      replicas: 1
 
   mongo-express:
     image: mongo-express
     container_name: mongo-express
-    restart: always
+    # restart: always
     ports:
       - "8081:8081"
     environment:
@@ -120,6 +140,8 @@ services:
       ME_CONFIG_MONGODB_ENABLE_ADMIN: 'true'
     networks:
       - database
+    deploy:
+      replicas: 1
 
   portainer:
     image: docker.io/portainer/portainer-ce
@@ -129,7 +151,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
-    restart: always
+    # restart: always
+    deploy:
+      replicas: 1
 
 volumes:
   grafana-data:
@@ -140,6 +164,10 @@ volumes:
 
 networks:
   monitoring:
+    driver: overlay
   backend:
+    driver: overlay
   database:
+    driver: overlay
   auth:
+    driver: overlay
